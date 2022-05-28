@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      img {
+  height: 150px;
+  width: 150px;
+}
+table {
+ 
+  width: 60%;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+}
+
+table td,
+table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+
+table tr:hover {
+  background-color: #ddd;
+  margin-right: 1px;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color:green;
+  color: white;
+  text-align: center;
+}
+    </style>
+</head>
+<body>
+  <table>
+    <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Batch</th>
+          <th>Unit</th>
+          <th>Course</th>
+          
+         </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    
+</body>
+</html>
+<script>
+
+
+var data=JSON.parse(localStorage.getItem("details")) || []
+     //console.log(product)
+     function showdata(data){
+document.querySelector("tbody").innerHTML=null
+
+data.map(function(elem,index){
+
+var row = document.createElement("tr");
+
+//var td1 = document.createElement("td");
+var image=document.createElement("img")
+image.src = elem.image;
+// td1.append(image)
+
+var td2 = document.createElement("td");
+td2.innerText = elem.name;
+
+var td3 = document.createElement("td");
+td3.innerText = elem.batch;
+
+var td4 = document.createElement("td");
+td4.innerText = elem.unit;
+
+var td5 = document.createElement("td");
+td5.innerText = elem.course;
+
+var btn=document.createElement("button")
+btn.innerText="Remove"
+btn.setAttribute("id","remove")
+btn.addEventListener("click",function(){
+  remove(index)
+})
+
+row.append(image,td2,td3,td4,td5,btn);
+
+document.querySelector("tbody").append(row);
+});
+     }
+showdata(data)
+   let trash=JSON.parse(localStorage.getItem("trash")) ||[]; 
+     //console.log(product)
+function remove(index){
+trash.push(data.splice(index,1));
+localStorage.setItem("details",JSON.stringify(data))
+localStorage.setItem("trash",JSON.stringify(trash))
+
+
+showdata(data)
+}
+  
+</script>

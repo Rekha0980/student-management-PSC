@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student</title>
+    <style>
+        div {
+  display: flex;
+  justify-content: space-around;
+}
+form {
+  margin:auto;
+  margin-top: 10px;
+  width: 25%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 30px;
+}
+
+label {
+  font-size: 20px;
+}
+
+input[type="text"],
+input[type="url"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+
+}
+
+input[type="submit"] {
+  background-color:green;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 20px;
+}
+img {
+  height: 100px;
+  width: 100px;
+}
+h1{
+  text-align: center;
+}
+
+    </style>
+  </head>
+  <body>
+    
+    <button ><a href="dashboard.html">Dashboard</a></button>
+    <p id="para"></p>
+    <h1>Student management system</h1>
+  <div>
+   
+      <form>
+       <label>Student Image</label><br />
+        <input id="image" type="url" placeholder="Enter Image URL" /><br />
+        <label>Student Name</label><br />
+        <input id="name" type="text" placeholder="Enter Student Name" /><br />
+        <label>Batch </label><br />
+        <select id="batch">
+          <option value="FT WEB-17">FT WEB-17</option>
+          <option value="FT WEB-16">FT WEB-16</option>
+          <option value="FT WEB-15">FT WEB-15</option>
+          <option value="FT WEB-14">FT WEB-14</option></select><br />
+          <label>Unit </label><br />
+        <select id="unit">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option></select><br />
+            <label>Course</label><br />
+          <select id="course">
+            <option value="FSWD">FSWD</option>
+            <option value="FSAD">FSAD</option>
+            <option value="DA">DA</option>
+            </select>
+           <br />
+    <input type="submit" />
+      </form>
+      </div>
+  </body>
+</html>
+
+<script>
+  
+     function Data(imgUrl,nam,bch,unit,course) {
+this.image = imgUrl;
+ this.name = nam;
+this.batch = bch;
+this.unit= unit;
+this.course = course;
+
+ }
+    let arr =JSON.parse(localStorage.getItem("details"))||[];
+
+    
+document.querySelector("form").addEventListener("submit", student);
+function student() {
+    event.preventDefault();
+    var imgUrl=document.querySelector("#image").value;
+    var nam=document.querySelector("#name").value;
+    var bch=document.querySelector("#batch").value;
+    var unit=document.querySelector("#unit").value;
+    var course=document.querySelector("#course").value;
+    
+   
+let l = new Data(imgUrl,nam,bch,unit,course);
+//console.log(l)
+arr.push(l);
+console.log(arr);
+localStorage.setItem("details",JSON.stringify(arr))
+}
+function calculate(){
+  let arr =JSON.parse(localStorage.getItem("details"))||[];
+  var obj={};
+  for(var i=0;i<arr.length;i++){
+    if(!obj[arr[i].batch]){
+      obj[arr[i].batch]=0
+
+    }
+  }
+  for(var i=0;i<arr.length;i++){
+   obj[arr[i].batch]++
+ }
+ 
+
+  }
+
+calculate()
+</script>
