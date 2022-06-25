@@ -27,7 +27,7 @@ input[type="url"],
 select,
 textarea {
   width: 100%;
-  padding: 12px;
+  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
@@ -39,7 +39,7 @@ textarea {
 input[type="submit"] {
   background-color:green;
   color: white;
-  padding: 12px 20px;
+  padding: 8px 10px;
   border: none;
   cursor: pointer;
   width: 100%;
@@ -49,19 +49,40 @@ img {
   height: 100px;
   width: 100px;
 }
-h1{
+h2{
   text-align: center;
+}
+#main{
+  display: flex;
+  background-color: pink;
+  padding: 10px;
+  margin: 0px;
+}
+#main>div{
+  font-weight: bold;
+}
+button{
+  background-color:yellow;
+  color: black;
+  padding: 5px;
+  border: none;
+}
+a{
+  text-decoration: none;
 }
 
     </style>
   </head>
   <body>
-    
-    <button ><a href="dashboard.html">Dashboard</a></button>
+    <div id="main">
+      <div id="satra">Batch01-0</div>
+      <div id="sola">Batch02-0</div>
+      <button ><a href="dashboard.html">Dashboard</a></button>
+    </div>
+   
     <p id="para"></p>
-    <h1>Student management system</h1>
-    <div id="batch1"></div>
-    <div id="batch2"></div>
+    <h2>Student management system</h2>
+    
   <div>
    
       <form>
@@ -71,23 +92,26 @@ h1{
         <input id="name" type="text" placeholder="Enter Student Name" /><br />
         <label>Batch </label><br />
         <select id="batch">
-          <option value="FT WEB-17">FT WEB-17</option>
-          <option value="FT WEB-16">FT WEB-16</option>
-          <option value="FT WEB-15">FT WEB-15</option>
-          <option value="FT WEB-14">FT WEB-14</option></select><br />
+          <option value=""></option>
+          <option value="Batch01">Batch1</option>
+          <option value="Batch02">Batch2</option>
+          <!-- <option value="FTWEB-15">FT WEB-15</option>
+          <option value="FTWEB-14">FT WEB-14</option>-->
+        </select><br />
           <label>Unit </label><br />
         <select id="unit">
+          <option value=""></option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option></select><br />
+          </select><br />
             <label>Course</label><br />
           <select id="course">
+            <option value=""></option>
             <option value="FSWD">FSWD</option>
             <option value="FSAD">FSAD</option>
-            <option value="DA">DA</option>
+            
             </select>
            <br />
     <input type="submit" />
@@ -140,9 +164,22 @@ function calculate(){
   for(var i=0;i<arrr.length;i++){
    obj[arrr[i].batch]++
  }
-console.log(obj)
+return obj
   }
   
-calculate()
+let obj1=calculate()
+console.log(obj1)
+for(var key in obj1){
+  if(key=="Batch01"){
+    document.getElementById(id="satra").innerText=key+"-"+obj1[key]
+  }
+  else if(key=="Batch02"){
+    document.getElementById(id="sola").innerText=key+"-"+obj1[key]
+  }
+}
+
+
+
+
 
 </script>
