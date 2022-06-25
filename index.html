@@ -60,6 +60,8 @@ h1{
     <button ><a href="dashboard.html">Dashboard</a></button>
     <p id="para"></p>
     <h1>Student management system</h1>
+    <div id="batch1"></div>
+    <div id="batch2"></div>
   <div>
    
       <form>
@@ -105,6 +107,7 @@ this.course = course;
 
  }
     let arr =JSON.parse(localStorage.getItem("details"))||[];
+  
 
     
 document.querySelector("form").addEventListener("submit", student);
@@ -123,21 +126,23 @@ arr.push(l);
 console.log(arr);
 localStorage.setItem("details",JSON.stringify(arr))
 }
+
+
 function calculate(){
-  let arr =JSON.parse(localStorage.getItem("details"))||[];
+  let arrr =JSON.parse(localStorage.getItem("details"))||[];
   var obj={};
-  for(var i=0;i<arr.length;i++){
-    if(!obj[arr[i].batch]){
-      obj[arr[i].batch]=0
+  for(var i=0;i<arrr.length;i++){
+    if(!obj[arrr[i].batch]){
+      obj[arrr[i].batch]=0
 
     }
   }
-  for(var i=0;i<arr.length;i++){
-   obj[arr[i].batch]++
+  for(var i=0;i<arrr.length;i++){
+   obj[arrr[i].batch]++
  }
- 
-
+console.log(obj)
   }
-
+  
 calculate()
+
 </script>
